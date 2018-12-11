@@ -5862,6 +5862,12 @@
     <file>
       <name>$PROJ_DIR$\..\sys.h</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\..\touch.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\touch.h</name>
+    </file>
   </group>
 </project>
 
