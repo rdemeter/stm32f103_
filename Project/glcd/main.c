@@ -22,6 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
 #include "stm32_eval.h"
+#include "delay.h"
 
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
@@ -53,7 +54,8 @@ int main(void)
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f10x.c file
      */     
-       
+  delay_init(24);
+   
   /* GPIOD Periph clock enable */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
@@ -72,9 +74,10 @@ int main(void)
   {
     /* Set PC8 and PC9 */
     GPIOC->BSRR = 0x00000300;
-
+    delay_ms(1000);
     /* Reset PC8 and PC9 */
     GPIOC->BRR  = 0x00000300;
+    delay_ms(1000);
   }
 }
 
