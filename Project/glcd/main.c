@@ -12,7 +12,7 @@ int main(void)
 
     LCD_Init();
 
-    //LCD_BL_SET;
+    LCD_BL_SET;
     LCD_Clear(ORANGE); // BLACK
 
     //LCD_Rect(0,0,320,240,RGB565(255,255,255));
