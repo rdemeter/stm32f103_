@@ -227,7 +227,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>1111111</state>
+          <state>0000000</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -320,7 +320,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>3</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -329,7 +329,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>3</state>
+          <state>0</state>
         </option>
         <option>
           <name>CompilerMisraRules98</name>
@@ -5670,16 +5670,6 @@
       </excluded>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\Utilities\STM32_EVAL\STM32100B_EVAL\stm32100b_eval_lcd.c</name>
-      <excluded>
-        <configuration>STM3210C-EVAL</configuration>
-        <configuration>STM3210E-EVAL</configuration>
-        <configuration>STM3210B-EVAL</configuration>
-        <configuration>STM32100E-EVAL</configuration>
-        <configuration>STM3210E-EVAL_XL</configuration>
-      </excluded>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\..\..\Utilities\STM32_EVAL\STM32100E_EVAL\stm32100e_eval_cec.c</name>
       <excluded>
         <configuration>STM32100B-EVAL</configuration>
@@ -5849,10 +5839,28 @@
       <name>$PROJ_DIR$\..\delay.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\font.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\font.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\lcd.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\lcd.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\main.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\stm32f10x_it.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\sys.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\sys.h</name>
     </file>
   </group>
 </project>
