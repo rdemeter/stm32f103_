@@ -5833,6 +5833,12 @@
   <group>
     <name>User</name>
     <file>
+      <name>$PROJ_DIR$\..\bounce_utils.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\bounce_utils.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\delay.c</name>
     </file>
     <file>
@@ -5843,6 +5849,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\font.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\glcd.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\glcd.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\lcd.c</name>

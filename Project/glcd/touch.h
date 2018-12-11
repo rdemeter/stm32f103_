@@ -46,8 +46,8 @@ long double An,
 } Matrix ;
 
 /* Private variables ---------------------------------------------------------*/
-extern Coordinate ScreenSample[3];
-extern Coordinate DisplaySample[3];
+extern Coordinate ScreenSample[7];
+extern Coordinate DisplaySample[7];
 extern Matrix matrix ;
 extern Coordinate  display ;
 
@@ -63,6 +63,7 @@ extern Coordinate  display ;
 /* Private function prototypes -----------------------------------------------*/				
 void TP_Init(void);	
 Coordinate *Read_Ads7846(void);
+void waitTouch(void);
 void TouchPanel_Calibrate(void);
 void DrawCross(uint16_t Xpos,uint16_t Ypos);
 void TP_DrawPoint(uint16_t Xpos,uint16_t Ypos);

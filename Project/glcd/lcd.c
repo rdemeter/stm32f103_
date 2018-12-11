@@ -4,7 +4,7 @@
 
 _lcd_dev lcddev;
 
-u16 POINT_COLOR = 0xFFFF;
+u16 POINT_COLOR = BLACK;//0xFFFF;
 u16 BACK_COLOR = 0xFFFF;
 
 
@@ -131,6 +131,45 @@ void LCD_GPIOInit(void)
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
     GPIO_SetBits(GPIOB,GPIO_Pin_All);	 
+}
+
+
+/*************************************************************/
+
+void LCD_DrawTriangle(u16 x1, u16 y1,u16 x2, u16 y2,u16 x3, u16 y3)
+	
+{
+  LCD_DrawLine(x1, y1, x2, y2);
+  LCD_DrawLine(x2, y2, x3, y3);
+  LCD_DrawLine(x3, y3, x1, y1); 
+}
+
+/***************************************************************/
+void LCD_Draw_Circle(u16 x0,u16 y0,u8 r)
+{
+	int a,b;
+	int di;
+	a=0;b=r;	  
+	di=3-(r<<1);             
+	while(a<=b)
+	{
+		LCD_DrawPoint(x0+a,y0-b);             //5
+ 		LCD_DrawPoint(x0+b,y0-a);             //0           
+		LCD_DrawPoint(x0+b,y0+a);             //4               
+		LCD_DrawPoint(x0+a,y0+b);             //6 
+		LCD_DrawPoint(x0-a,y0+b);             //1       
+ 		LCD_DrawPoint(x0-b,y0+a);             
+		LCD_DrawPoint(x0-a,y0-b);             //2             
+  		LCD_DrawPoint(x0-b,y0-a);             //7     	         
+		a++;
+		    
+		if(di<0)di +=4*a+6;	  
+		else
+		{
+			di+=10+4*(a-b);   
+			b--;
+		} 						    
+	}
 }
 
 /*****************************************************************/
@@ -448,11 +487,11 @@ void LCD_SetParam(void)
     LCD_WriteReg(0x36,0x0028);
 #else
     lcddev.dir=0;		 	 		
-    lcddev.width=240;
+    lcddev.width=240;          
     lcddev.height=320;
-    lcddev.setxcmd=0x2A;
-    lcddev.setycmd=0x2B;	
-    LCD_WriteReg(0x36,0xC9);
+    lcddev.setxcmd=0x32;
+    lcddev.setycmd=0x33;	
+    LCD_WriteReg(0x36,0x0028);
 #endif
 }	
 

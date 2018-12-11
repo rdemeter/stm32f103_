@@ -123,6 +123,7 @@ void LCD_DrawPoint(u16 x,u16 y);
 u16  LCD_ReadPoint(u16 x,u16 y);
 void LCD_DrawLine(u16 x1, u16 y1, u16 x2, u16 y2);
 void LCD_DrawRectangle(u16 x1, u16 y1, u16 x2, u16 y2);
+void LCD_DrawFillRectangle(u16 x1, u16 y1, u16 x2, u16 y2);
 void LCD_Fill(u16 sx,u16 sy,u16 ex,u16 ey,u16 color);
 void LCD_SetWindows(u16 xStar, u16 yStar,u16 xEnd,u16 yEnd);
 void LCD_DrawPoint_16Bit(u16 color);
@@ -137,6 +138,12 @@ u16 LCD_BGR2RGB(u16 c);
 void LCD_SetParam(void);
 uint32_t LCD_Putchar(u16 x,u16 y,u16 FontColor, u16 BackColor, char c, u8 mode, sFONT *font);
 void LCD_DrawString(u16 x, u16 y, u16 FontColor, u16 BackColor, char *str, u8 mode, sFONT *font);
+
+void LCD_Draw_Circle(u16 x0,u16 y0,u8 r);
+void LCD_DrawTriangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 x3, u16 y3);
+
+void GUI_DrawPoint(u16 x,u16 y,u16 color);
+
 #define LCD_REG_0             0x00
 #define LCD_REG_1             0x01
 #define LCD_REG_2             0x02

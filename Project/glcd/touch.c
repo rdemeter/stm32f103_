@@ -32,13 +32,21 @@ Coordinate  display ;
 
 /* LCD coordinates corresponding sampling AD value. 
 for example£ºLCD coordinates 45, 45 X Y sampling ADC value 3388, 920 */	
-Coordinate ScreenSample[3];
+Coordinate ScreenSample[7];
 /* LCD Coordinate */
-Coordinate DisplaySample[3] =   {
+
+Coordinate DisplaySample[7] =   {
                                   { 45, 45 },
-				  { 45, 270},
-                                  { 190,190}
+				  { 45, 270 },
+                                  { 190,190}//,
+                                  //{ 200, 45},
+                                  //{ 150, 45},
+                                  //{ 90, 45},
+                                  //{ 45, 45}
+                                  
+                        
 	                         } ;
+
 
 /* Private define ------------------------------------------------------------*/
 #define THRESHOLD 2   /* threshold */
@@ -104,6 +112,15 @@ void TP_Init(void)
 
   ADS7843_SPI_Init(); 
 } 
+
+void waitTouch(void)
+{
+    while(1) {
+        if(!GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_2))
+            break;         
+    }
+}
+
 
 /*******************************************************************************
 * Function Name  : DelayUS
@@ -179,7 +196,7 @@ static int RD_AD(void)
   
   temp = SPI_I2S_ReceiveData(SPI1); 
   buf |= temp; 
-  buf >>= 3; 
+  buf >>= 4; //schimbat 3
   buf &= 0xfff;
   
   return buf; 
@@ -289,6 +306,16 @@ void TP_DrawPoint(uint16_t Xpos,uint16_t Ypos)
 *******************************************************************************/
 void DrawCross(uint16_t Xpos,uint16_t Ypos)
 {
+  
+  //LCD_DrawLine(Xpos-40,Ypos+250,Xpos-40,Ypos+270);//,0xffff);// colt stanga
+  
+  //LCD_DrawLine(Xpos-40,Ypos+250,Xpos+30,Ypos+250);//,0xffff); //colt dreapta
+  
+  //LCD_DrawLine(Xpos+30,Ypos+250,Xpos+30,Ypos+270);//,0xffff); //colt stanga jos
+  
+  //LCD_DrawLine(Xpos+30,Ypos+270,Xpos-40,Ypos+270);//,0xffff); //colt dreapta jos
+  
+  
   LCD_DrawLine(Xpos-15,Ypos,Xpos-2,Ypos);//,0xffff);
   
   LCD_DrawLine(Xpos+2,Ypos,Xpos+15,Ypos);//,0xffff);
@@ -337,7 +364,7 @@ Coordinate *Read_Ads7846(void)
   if( count == 9 )   /* Successful sampling 9, filtering */ 
   {  
     /* In order to reduce the amount of computation, were divided into three groups averaged */
-    temp[0] = ( buffer[0][0] + buffer[0][1] + buffer[0][2] ) / 3;
+        temp[0] = ( buffer[0][0] + buffer[0][1] + buffer[0][2] ) / 3;
 	temp[1] = ( buffer[0][3] + buffer[0][4] + buffer[0][5] ) / 3;
 	temp[2] = ( buffer[0][6] + buffer[0][7] + buffer[0][8] ) / 3;
 	/* Calculate the three groups of data */
@@ -346,7 +373,7 @@ Coordinate *Read_Ads7846(void)
 	m2 = temp[2] - temp[0];
 	/* Absolute value of the above difference */
 	m0 = m0 > 0 ? m0 : (-m0);
-    m1 = m1 > 0 ? m1 : (-m1);
+        m1 = m1 > 0 ? m1 : (-m1);
 	m2 = m2 > 0 ? m2 : (-m2);
 	/* Judge whether the absolute difference exceeds the difference between the threshold, If these three absolute difference exceeds the threshold, 
        The sampling point is judged as outliers, Discard sampling points */
@@ -376,7 +403,7 @@ Coordinate *Read_Ads7846(void)
 	}
 
 	/* calculate the average value of Y */
-    temp[0] = ( buffer[1][0] + buffer[1][1] + buffer[1][2] ) / 3;
+        temp[0] = ( buffer[1][0] + buffer[1][1] + buffer[1][2] ) / 3;
 	temp[1] = ( buffer[1][3] + buffer[1][4] + buffer[1][5] ) / 3;
 	temp[2] = ( buffer[1][6] + buffer[1][7] + buffer[1][8] ) / 3;
 	
@@ -518,19 +545,19 @@ void TouchPanel_Calibrate(void)
   for(i=0;i<3;i++)
   {
       LCD_Clear(ORANGE);
-      LCD_DrawString(10,10,BLACK,YELLOW,"Touch crosshair to calibrate", 0,&Font8x8);   
+      LCD_DrawString(10,10,BLACK,YELLOW,"PING PONG", 0,&Font8x8);   
       delay_ms(500);
       DrawCross(DisplaySample[i].x,DisplaySample[i].y);
       do
       {
 		   Ptr = Read_Ads7846();
       }
-      while( Ptr == (void*)0 );
+      while( Ptr == (void*)0);
    
       ScreenSample[i].x = Ptr->x; ScreenSample[i].y = Ptr->y;
   }
   setCalibrationMatrix( &DisplaySample[0],&ScreenSample[0],&matrix ) ;  /* get calibration parameters */	   
-  LCD_Clear(ORANGE);
+  LCD_Clear(WHITE);
 } 
 
 
