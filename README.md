@@ -10,6 +10,6 @@ We used SPL (Standard Peripheral Library) from STM to generate the project
 
 # Install the ST Link drivers
 
-![board](https://github.com/rdemeter/stm32f103_/tree/master/doc/fig3.png)
+![board](doc/fig3.png)
 
-![playing](https://github.com/rdemeter/stm32f103_/tree/master/doc/fig2.png)
+![playing](doc/fig2.png)
