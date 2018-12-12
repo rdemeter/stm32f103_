@@ -4,7 +4,9 @@ Requirements:
 - STM32f100 discovery board
 - ILI9328 LCD with touch screen
 
-# Install the IAR IDE
+# Install the IAR Workbench Embedded
+
+We used SPL (Standard Peripheral Library) from STM to generate the project
 
 # Install the ST Link drivers
 
