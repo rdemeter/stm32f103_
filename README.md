@@ -6,10 +6,9 @@ Requirements:
 
 # Install the IAR Workbench Embedded
 
-We used SPL (Standard Peripheral Library) from STM to generate the project
+We used SPL (Standard Peripheral Library v.3.5.0) from STM to generate the project
 
-# Install the ST Link drivers
+<img src="doc/fig3.png" width="200">
 
-![board](doc/fig3.png)
+<img src="doc/fig2.png" width="200">
 
-![playing](doc/fig2.png)
