@@ -20,3 +20,11 @@ STM32 control the touch screen (AD7843):
 
 <img src="doc/fig2.png" width="200">
 
+# ToDo
+
+Add multitask support, one task per action:
+- update_ball
+- update_player_1
+- update_player_2
+- collision_check
+- gui
